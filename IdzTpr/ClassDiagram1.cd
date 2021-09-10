@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="IdzTpr.Domain.AssessmentСompetence">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAIAAQQAAAAAQAABAAAAAAAAQAA=</HashCode>
+      <FileName>Domain\Competence\AssessmentСompetence.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IdzTpr.Domain.Competence">
+    <Position X="6" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAIAAgAAAAAQAIAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\Competence\Competence.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IdzTpr.Domain.CompetenceLevelScale">
+    <Position X="8" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAgEkAAAAAAAAAAAAIACAAAgAAAAAAA=</HashCode>
+      <FileName>Domain\Competence\CompetenceLevelScale.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IdzTpr.Domain.ModelCompetence">
+    <Position X="2.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAMAAAAAAAAAAAAACAAABAAAMAAAAAgAAAAAQAABAAA=</HashCode>
+      <FileName>Domain\ModelCompetence.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IdzTpr.Domain.RequiredСompetence">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\RequiredСompetence.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
