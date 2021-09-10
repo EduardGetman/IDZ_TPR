@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Appointment.cs" />
-    <Compile Include="Coefficients\AdequacyAppointment.cs" />
+    <Compile Include="Coefficients\RelativeAdequacy.cs" />
     <Compile Include="Coefficients\ImportanceRequirement.cs" />
     <Compile Include="Competences\AssessmentСompetence.cs" />
     <Compile Include="Competences\Competence.cs" />

@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 
 namespace IdzTpr.Domain
 {
-    class Position:IEnumerable
+    class Position : IEnumerable
     {
         ModelCompetence _modelCompetence;
+        private double _importance;
+
         public Requirement this[int index]
         {
             get
@@ -30,10 +32,21 @@ namespace IdzTpr.Domain
                 _modelCompetence[index] = value;
             }
         }
+        public double Importance
+        {
+            get => _importance; set
+            {
+                if (value <= 0 || value > 1)
+                {
+                    throw new ArgumentException();
+                }
+                _importance = value;
+            }
+        }
         public void Add(Requirement requirement) => _modelCompetence.Add(requirement);
         public void Remove(int index) => _modelCompetence.Remove(index);
 
-        public IEnumerator GetEnumerator()
+        public IEnumerator<Requirement> GetEnumerator()
         {
             List<Requirement> requirements = new List<Requirement>(_modelCompetence.Assessments.Length);
             foreach (AssessmentСompetence assessment in _modelCompetence.Assessments)
