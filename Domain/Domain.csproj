@@ -48,8 +48,8 @@
     <Compile Include="Competences\Competence.cs" />
     <Compile Include="Competences\CompetenceLevelScale.cs" />
     <Compile Include="Competences\Requirement.cs" />
-    <Compile Include="ModelCompetence.cs" />
-    <Compile Include="Position.cs" />
+    <Compile Include="Models\ModelCompetence.cs" />
+    <Compile Include="Models\Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
