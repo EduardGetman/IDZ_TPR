@@ -46,7 +46,7 @@ namespace IdzTpr.Domain
         public void Add(Requirement requirement) => _modelCompetence.Add(requirement);
         public void Remove(int index) => _modelCompetence.Remove(index);
 
-        public IEnumerator<Requirement> GetEnumerator()
+        public IEnumerator GetEnumerator()
         {
             List<Requirement> requirements = new List<Requirement>(_modelCompetence.Assessments.Length);
             foreach (AssessmentСompetence assessment in _modelCompetence.Assessments)
