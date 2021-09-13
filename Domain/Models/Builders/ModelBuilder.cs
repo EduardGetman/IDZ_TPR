@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using Domain.Competences;
-using Domain.Models;
 
-namespace Domain
+namespace Domain.Models.Builders
 {
-    class ModelBuilder:AbstractBuilder    {
+    class ModelBuilder
+    {
         protected CompetenceLevelScale _scale;
         protected Dictionary<Competence, int> _assesmentParametrs;
         public ModelBuilder(CompetenceLevelScale scale)
