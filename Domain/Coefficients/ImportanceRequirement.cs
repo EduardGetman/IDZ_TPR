@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace IdzTpr.Domain
+﻿using Domain.Models;
+using Domain.Competences;
+namespace Domain.Coefficients
 {
     class ImportanceRequirement
     {

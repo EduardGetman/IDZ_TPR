@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Domain.Competences;
 
-namespace IdzTpr.Domain
+namespace Domain
 {
     class ModelCompetence
     {
@@ -75,7 +73,6 @@ namespace IdzTpr.Domain
             }
             return true;
         }
-
     }
 }
 

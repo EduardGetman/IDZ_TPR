@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Domain.Competences;
 
-namespace IdzTpr.Domain
+namespace Domain.Models
 {
     class Position : IEnumerable
     {
