@@ -2,23 +2,31 @@
 using System.Collections.Generic;
 using Domain.Competences;
 
-namespace Domain
+namespace Domain.Models
 {
     class ModelCompetence
     {
-        private List<AssessmentСompetence> _assessments;
+        private AssessmentСompetence[] _assessments;
+
+        public ModelCompetence(AssessmentСompetence[] assessments, CompetenceLevelScale levelScale)
+        {
+            _assessments = assessments;
+            LevelScale = levelScale;
+        }
+
         public CompetenceLevelScale LevelScale { get; private set; }
-        public AssessmentСompetence[] Assessments => _assessments.ToArray();
+        internal AssessmentСompetence[] Assessments => _assessments;
+
         public AssessmentСompetence this[int index]
         {
-            get => Assessments[index];
+            get => _assessments[index];
             set
             {
                 if (CompetenceValidtion(value, out Exception exception))
                 {
                     throw exception;
                 }
-                Assessments[index] = value;
+                _assessments[index] = value;
             }
         }
         virtual protected ArgumentException ConstructDifferentScaleExcepsion(CompetenceLevelScale AssignedScale)
@@ -26,18 +34,6 @@ namespace Domain
             return new ArgumentException($"Попытка установить компетенцию с другой шкалой. "
                                                 + $"Текущая шкала:{LevelScale}. "
                                                 + $"Шкала присваиваеммой компетенции: {AssignedScale}");
-        }
-        public void Add(AssessmentСompetence competence)
-        {
-            if (CompetenceValidtion(competence, out Exception exception))
-            {
-                throw exception;
-            }
-            _assessments.Add(competence);
-        }
-        public void Remove(int index)
-        {
-            _assessments.Remove(Assessments[index]);
         }
         private bool CompetenceValidtion(AssessmentСompetence competence, out Exception exception)
         {

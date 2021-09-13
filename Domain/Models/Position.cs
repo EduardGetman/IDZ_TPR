@@ -40,9 +40,7 @@ namespace Domain.Models
                 }
                 _importance = value;
             }
-        }
-        public void Add(Requirement requirement) => _modelCompetence.Add(requirement);
-        public void Remove(int index) => _modelCompetence.Remove(index);
+        }        
 
         public IEnumerator GetEnumerator()
         {
