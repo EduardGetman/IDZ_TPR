@@ -7,8 +7,8 @@
     <ProjectGuid>{D2493D18-FFB2-4119-AFF9-B9E5580F6EDE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Вщьфш</RootNamespace>
-    <AssemblyName>Вщьфш</AssemblyName>
+    <RootNamespace>Domain</RootNamespace>
+    <AssemblyName>Domain</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -48,6 +48,7 @@
     <Compile Include="Competences\Competence.cs" />
     <Compile Include="Competences\CompetenceLevelScale.cs" />
     <Compile Include="Competences\Requirement.cs" />
+    <Compile Include="ModelBuilder.cs" />
     <Compile Include="Models\ModelCompetence.cs" />
     <Compile Include="Models\Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
