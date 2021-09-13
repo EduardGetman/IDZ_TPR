@@ -1,12 +1,13 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Domain.Competences;
 
 namespace Domain.Models
 {
-    class ModelCompetence
+    class ModelCompetence : IEnumerable<AssessmentСompetence>
     {
-        private AssessmentСompetence[] _assessments;
+        protected AssessmentСompetence[] _assessments;
 
         public ModelCompetence(AssessmentСompetence[] assessments, CompetenceLevelScale levelScale)
         {
@@ -15,7 +16,7 @@ namespace Domain.Models
         }
 
         public CompetenceLevelScale LevelScale { get; private set; }
-        internal AssessmentСompetence[] Assessments => _assessments;
+        public AssessmentСompetence[] Assessments => _assessments;
 
         public AssessmentСompetence this[int index]
         {
@@ -68,6 +69,15 @@ namespace Domain.Models
                 }
             }
             return true;
+        }
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return Assessments.GetEnumerator();
+        }
+
+        public IEnumerator<AssessmentСompetence> GetEnumerator()
+        {
+            return ((IEnumerable<AssessmentСompetence>)Assessments).GetEnumerator();
         }
     }
 }

@@ -5,7 +5,7 @@ namespace Domain.Coefficients
 {
     class RelativeAdequacy
     {
-        private Requirement _requirement;
+        private AssessmentСompetence _requirement;
         private AssessmentСompetence _qualification;
         private double _importance;
 
@@ -23,7 +23,7 @@ namespace Domain.Coefficients
             _importance = importance.ImportanceAssessment;
             CalculationAdequacy();
         }
-        public RelativeAdequacy(Requirement requirement, AssessmentСompetence qualification)
+        public RelativeAdequacy(AssessmentСompetence requirement, AssessmentСompetence qualification)
         {
             Validation(requirement, qualification);
             _requirement = requirement;
@@ -31,7 +31,7 @@ namespace Domain.Coefficients
             _importance = 1;
             CalculationAdequacy();
         }
-        private void Validation(Requirement requirement, AssessmentСompetence qualification)
+        private void Validation(AssessmentСompetence requirement, AssessmentСompetence qualification)
         {
             if (requirement.CompetenciesCoincide(qualification))
             {

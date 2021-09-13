@@ -8,23 +8,23 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
-    class PositionBuilder : AbstractBuilder
+    class PositionBuilder : ModelBuilder
     {
         public PositionBuilder(CompetenceLevelScale scale) : base(scale)
         {
         }
-        public ModelCompetence Build()
+        public override ModelCompetence Build()
         {
-            return new Position(BuildAssesments(), _scale);
+            return new Position(BuildRequirements(), _scale);
         }
-        private Requirement[] BuildAssesments()
+        private Requirement[] BuildRequirements()
         {
-            List<AssessmentСompetence> assessments = new List<AssessmentСompetence>();
+            List<Requirement> requirements = new List<Requirement>();
             foreach (var item in _assesmentParametrs)
             {
-                assessments.Add(new AssessmentСompetence(item.Key, item.Value);
+                requirements.Add(new Requirement(item.Key, item.Value));
             }
-            return assessments.ToArray();
+            return requirements.ToArray();
         }
     }
 }

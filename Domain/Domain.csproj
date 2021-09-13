@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractBuilder.cs" />
     <Compile Include="Appointment.cs" />
     <Compile Include="Coefficients\RelativeAdequacy.cs" />
     <Compile Include="Coefficients\ImportanceRequirement.cs" />

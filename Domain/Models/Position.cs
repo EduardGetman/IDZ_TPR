@@ -5,31 +5,19 @@ using Domain.Competences;
 
 namespace Domain.Models
 {
-    class Position : IEnumerable
-    {
-        ModelCompetence _modelCompetence;
+    class Position:ModelCompetence
+    {        
         private double _importance;
 
-        public Requirement this[int index]
+        public Position(AssessmentСompetence[] assessments, CompetenceLevelScale levelScale, double importance) : base(assessments, levelScale)
         {
-            get
-            {
-                Requirement requirement = _modelCompetence[index] as Requirement;
-                if (requirement is null)
-                {
-                    throw new ArgumentException();
-                }
-                return requirement;
-            }
-            set
-            {
-                if (value is null)
-                {
-                    throw new ArgumentException();
-                }
-                _modelCompetence[index] = value;
-            }
+            Importance = importance;
         }
+
+        public Position(AssessmentСompetence[] assessments, CompetenceLevelScale levelScale) : base(assessments, levelScale)
+        {
+        }
+
         public double Importance
         {
             get => _importance; set
@@ -40,18 +28,6 @@ namespace Domain.Models
                 }
                 _importance = value;
             }
-        }        
-
-        public IEnumerator GetEnumerator()
-        {
-            List<Requirement> requirements = new List<Requirement>(_modelCompetence.Assessments.Length);
-            foreach (AssessmentСompetence assessment in _modelCompetence.Assessments)
-            {
-                requirements.Add(assessment as Requirement);
-
-            }
-            return requirements.GetEnumerator();
-        }
-        public bool ModelEquals(ModelCompetence modelCompetence) => _modelCompetence.ModelEquals(modelCompetence);
+        }  
     }
 }

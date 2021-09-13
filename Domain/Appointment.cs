@@ -46,7 +46,7 @@ namespace Domain
         public ImportanceRequirement[] CalculateImportanceRequirement()
         {
             List<ImportanceRequirement> importances = new List<ImportanceRequirement>();
-            foreach (var item in Position.Cast<Requirement>())
+            foreach (var item in Position)
             {
                 importances.Add(new ImportanceRequirement(item, Position));
             }
