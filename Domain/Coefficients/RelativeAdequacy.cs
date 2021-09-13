@@ -52,6 +52,10 @@ namespace Domain.Coefficients
         }
         private void CalculationAdequacy()
         {
+            if (RequirementLevel == 0)
+            {
+                Adequacy = 1;
+            }
             Adequacy = (Math.Min(QualificationLevel, RequirementLevel) / (double)RequirementLevel) * _importance;
         }
 

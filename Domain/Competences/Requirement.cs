@@ -14,10 +14,13 @@ namespace Domain.Competences
             get => base.Level;
             protected set
             {
-                if (value == 0)
-                {
-                    throw ConstructRequirementLevelZeroException();
-                }
+                // При расчёте адекватности назначения если требование равно нулю расчёт сведётся к 0/0.
+                // С точки зрения бизнес-логики если требование равно 0, то адекватность назначения в любом случае равна 1
+                // Спорный момент, но если принять 0/0 = 1, то я нагородил лишнюю иерархию.
+                //if (value == 0)
+                //{
+                //    throw ConstructRequirementLevelZeroException();
+                //}
                 base.Level = value;
             }
         }
