@@ -38,7 +38,7 @@ namespace View
 			}
 
 			employeeSkillsDGV.Rows[0].HeaderCell.Value = "Названия компетенций";
-    }
+        }
 
     private void applySkillsNUD_Click(object sender, EventArgs e)
 		{
@@ -57,6 +57,21 @@ namespace View
             }
 
             necessarySkillsDGV.Rows[0].HeaderCell.Value = "Названия компетенций";
-        }
+
+			//employeeSkillsDGV.Rows.Add();
+			//employeeSkillsDGV.Rows.Add();
+
+			//employeeSkillsDGV.Rows[Convert.ToInt32(competenceCountNUD.Value) + 1].HeaderCell.Value = "Минимальный навык";
+			//employeeSkillsDGV.Rows[Convert.ToInt32(competenceCountNUD.Value) + 2].HeaderCell.Value = "Максимальный навык";
+		}
+
+		private void calculateEmployeeAssignmentButton_Click(object sender, EventArgs e)
+		{
+		}
+
+		private void maxSkillLevelNUD_ValueChanged(object sender, EventArgs e)
+		{
+
+		}
 	}
 }

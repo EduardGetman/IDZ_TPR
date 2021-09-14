@@ -44,12 +44,19 @@
 			this.functionCountNUD = new System.Windows.Forms.NumericUpDown();
 			this.competenceCountNUD = new System.Windows.Forms.NumericUpDown();
 			this.applySkillsNUD = new System.Windows.Forms.Button();
+			this.button2 = new System.Windows.Forms.Button();
+			this.minSkillLevelNUD = new System.Windows.Forms.NumericUpDown();
+			this.label7 = new System.Windows.Forms.Label();
+			this.label8 = new System.Windows.Forms.Label();
+			this.maxSkillLevelNUD = new System.Windows.Forms.NumericUpDown();
 			((System.ComponentModel.ISupportInitialize)(this.employeeSkillsDGV)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.necessarySkillsDGV)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.employeeCompetenceNUD)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.employeeCountNUD)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.functionCountNUD)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.competenceCountNUD)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.minSkillLevelNUD)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.maxSkillLevelNUD)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// employeeSkillsDGV
@@ -94,6 +101,7 @@
 			this.calculateEmployeeAssignmentButton.TabIndex = 4;
 			this.calculateEmployeeAssignmentButton.Text = "Расчитать распределение сотрудников";
 			this.calculateEmployeeAssignmentButton.UseVisualStyleBackColor = true;
+			this.calculateEmployeeAssignmentButton.Click += new System.EventHandler(this.calculateEmployeeAssignmentButton_Click);
 			// 
 			// employeeCompetenceNUD
 			// 
@@ -175,11 +183,56 @@
 			this.applySkillsNUD.UseVisualStyleBackColor = true;
 			this.applySkillsNUD.Click += new System.EventHandler(this.applySkillsNUD_Click);
 			// 
+			// button2
+			// 
+			this.button2.Location = new System.Drawing.Point(79, 612);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(189, 23);
+			this.button2.TabIndex = 21;
+			this.button2.Text = "Применить шкалу оценивания";
+			this.button2.UseVisualStyleBackColor = true;
+			// 
+			// minSkillLevelNUD
+			// 
+			this.minSkillLevelNUD.Location = new System.Drawing.Point(227, 560);
+			this.minSkillLevelNUD.Name = "minSkillLevelNUD";
+			this.minSkillLevelNUD.Size = new System.Drawing.Size(120, 20);
+			this.minSkillLevelNUD.TabIndex = 20;
+			// 
+			// label7
+			// 
+			this.label7.Location = new System.Drawing.Point(11, 587);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(151, 15);
+			this.label7.TabIndex = 19;
+			this.label7.Text = "Максимальный уровень компетенции";
+			// 
+			// label8
+			// 
+			this.label8.Location = new System.Drawing.Point(11, 560);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(169, 15);
+			this.label8.TabIndex = 18;
+			this.label8.Text = "Минимальный уровень навыка";
+			// 
+			// maxSkillLevelNUD
+			// 
+			this.maxSkillLevelNUD.Location = new System.Drawing.Point(227, 586);
+			this.maxSkillLevelNUD.Name = "maxSkillLevelNUD";
+			this.maxSkillLevelNUD.Size = new System.Drawing.Size(120, 20);
+			this.maxSkillLevelNUD.TabIndex = 17;
+			this.maxSkillLevelNUD.ValueChanged += new System.EventHandler(this.maxSkillLevelNUD_ValueChanged);
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1446, 690);
+			this.Controls.Add(this.button2);
+			this.Controls.Add(this.minSkillLevelNUD);
+			this.Controls.Add(this.label7);
+			this.Controls.Add(this.label8);
+			this.Controls.Add(this.maxSkillLevelNUD);
 			this.Controls.Add(this.applySkillsNUD);
 			this.Controls.Add(this.competenceCountNUD);
 			this.Controls.Add(this.functionCountNUD);
@@ -204,6 +257,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.employeeCountNUD)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.functionCountNUD)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.competenceCountNUD)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.minSkillLevelNUD)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.maxSkillLevelNUD)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -244,5 +299,10 @@
 		private System.Windows.Forms.NumericUpDown functionCountNUD;
 		private System.Windows.Forms.NumericUpDown competenceCountNUD;
 		private System.Windows.Forms.Button applySkillsNUD;
+		private System.Windows.Forms.Button button2;
+		private System.Windows.Forms.NumericUpDown minSkillLevelNUD;
+		private System.Windows.Forms.Label label7;
+		private System.Windows.Forms.Label label8;
+		private System.Windows.Forms.NumericUpDown maxSkillLevelNUD;
 	}
 }
