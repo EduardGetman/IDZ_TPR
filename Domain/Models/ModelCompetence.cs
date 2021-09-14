@@ -1,26 +1,37 @@
-﻿using System;
+﻿using Domain.Competences;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IdzTpr.Domain
+namespace Domain.Models
 {
-    class ModelCompetence
+    class ModelCompetence : IEnumerable<AssessmentСompetence>
     {
-        private List<AssessmentСompetence> _assessments;
+        protected AssessmentСompetence[] _assessments;
+
+        public ModelCompetence(AssessmentСompetence[] assessments, CompetenceLevelScale levelScale, string name)
+        {
+            _assessments = assessments;
+            LevelScale = levelScale;
+            Name = name;
+        }
+        public string Name { get; set; }
         public CompetenceLevelScale LevelScale { get; private set; }
-        public AssessmentСompetence[] Assessments => _assessments.ToArray();
+        public AssessmentСompetence[] Assessments => _assessments;
+
         public AssessmentСompetence this[int index]
         {
-            get => Assessments[index];
+            get => _assessments[index];
             set
             {
                 if (CompetenceValidtion(value, out Exception exception))
                 {
                     throw exception;
                 }
-                Assessments[index] = value;
+                _assessments[index] = value;
             }
         }
         virtual protected ArgumentException ConstructDifferentScaleExcepsion(CompetenceLevelScale AssignedScale)
@@ -28,18 +39,6 @@ namespace IdzTpr.Domain
             return new ArgumentException($"Попытка установить компетенцию с другой шкалой. "
                                                 + $"Текущая шкала:{LevelScale}. "
                                                 + $"Шкала присваиваеммой компетенции: {AssignedScale}");
-        }
-        public void Add(AssessmentСompetence competence)
-        {
-            if (CompetenceValidtion(competence, out Exception exception))
-            {
-                throw exception;
-            }
-            _assessments.Add(competence);
-        }
-        public void Remove(int index)
-        {
-            _assessments.Remove(Assessments[index]);
         }
         private bool CompetenceValidtion(AssessmentСompetence competence, out Exception exception)
         {
@@ -74,6 +73,15 @@ namespace IdzTpr.Domain
                 }
             }
             return true;
+        }
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return Assessments.GetEnumerator();
+        }
+
+        public IEnumerator<AssessmentСompetence> GetEnumerator()
+        {
+            return ((IEnumerable<AssessmentСompetence>)Assessments).GetEnumerator();
         }
     }
 }
