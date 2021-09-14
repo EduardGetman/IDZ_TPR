@@ -12,12 +12,13 @@ namespace Domain.Models
     {
         protected AssessmentСompetence[] _assessments;
 
-        public ModelCompetence(AssessmentСompetence[] assessments, CompetenceLevelScale levelScale)
+        public ModelCompetence(AssessmentСompetence[] assessments, CompetenceLevelScale levelScale, string name)
         {
             _assessments = assessments;
             LevelScale = levelScale;
+            Name = name;
         }
-
+        public string Name { get; set; }
         public CompetenceLevelScale LevelScale { get; private set; }
         public AssessmentСompetence[] Assessments => _assessments;
 

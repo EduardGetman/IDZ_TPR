@@ -51,6 +51,7 @@
     <Compile Include="Distribution.cs" />
     <Compile Include="DistributionBuilder.cs" />
     <Compile Include="Models\Builders\ModelBuilder.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="Models\ModelCompetence.cs" />
     <Compile Include="Models\Position.cs" />
     <Compile Include="Models\Builders\PositionBuilder.cs" />
