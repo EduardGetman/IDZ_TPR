@@ -35,6 +35,8 @@ namespace Domain
         }
         public ModelCompetence Employee { get => _employee; set => _employee = value; }
         public Position Position { get => _position; set => _position = value; }
+        public string PositionName => Position.Name;
+        public string EmployeeName => Employee.Name;
         public double Effectiveness => Adequacy * Position.Importance;
         private void Validation(ModelCompetence employee, Position position)
         {

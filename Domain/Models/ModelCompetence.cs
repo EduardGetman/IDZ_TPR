@@ -83,6 +83,10 @@ namespace Domain.Models
         {
             return ((IEnumerable<AssessmentСompetence>)Assessments).GetEnumerator();
         }
+        public override string ToString()
+        {
+            return Name; 
+        }
     }
 }
 

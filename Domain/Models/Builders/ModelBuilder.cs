@@ -8,11 +8,15 @@ namespace Domain.Models.Builders
     {
         protected CompetenceLevelScale _scale;
         protected Dictionary<Competence, int> _assesmentParametrs;
-        public ModelBuilder(CompetenceLevelScale scale)
+        public ModelBuilder(CompetenceLevelScale scale, string name)
         {
             _scale = scale;
+            Name = name;
         }
         public CompetenceLevelScale Scale => _scale;
+
+        public string Name { get; set; }
+
         public int this[string name]
         {
             get => _assesmentParametrs[_scale.CompetenceFactory(name)];
@@ -34,7 +38,7 @@ namespace Domain.Models.Builders
         public bool Contains(string name) => _assesmentParametrs.ContainsKey(_scale.CompetenceFactory(name));
         virtual public ModelCompetence Build()
         {
-            return new ModelCompetence(BuildAssesments(), _scale);
+            return new ModelCompetence(BuildAssesments(), _scale, Name);
         }
         private AssessmentСompetence[] BuildAssesments()
         {

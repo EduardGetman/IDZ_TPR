@@ -5,17 +5,17 @@ using Domain.Competences;
 
 namespace Domain.Models
 {
-    class Position:ModelCompetence
-    {        
+    class Position : ModelCompetence
+    {
         private double _importance;
 
-        public Position(AssessmentСompetence[] assessments, CompetenceLevelScale levelScale, double importance) : base(assessments, levelScale)
+        public Position(AssessmentСompetence[] assessments, CompetenceLevelScale levelScale, string name) : base(assessments, levelScale, name)
         {
-            Importance = importance;
         }
 
-        public Position(AssessmentСompetence[] assessments, CompetenceLevelScale levelScale) : base(assessments, levelScale)
+        public Position(AssessmentСompetence[] assessments, CompetenceLevelScale levelScale, string name, double importance) : base(assessments, levelScale, name)
         {
+            Importance = importance;
         }
 
         public double Importance
@@ -28,6 +28,6 @@ namespace Domain.Models
                 }
                 _importance = value;
             }
-        }  
+        }
     }
 }

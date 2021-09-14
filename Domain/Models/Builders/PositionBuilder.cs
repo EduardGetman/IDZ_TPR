@@ -5,12 +5,12 @@ namespace Domain.Models.Builders
 {
     class PositionBuilder : ModelBuilder
     {
-        public PositionBuilder(CompetenceLevelScale scale) : base(scale)
+        public PositionBuilder(CompetenceLevelScale scale, string name) : base(scale, name)
         {
         }
         public override ModelCompetence Build()
         {
-            return new Position(BuildRequirements(), _scale);
+            return new Position(BuildRequirements(), _scale, Name);
         }
         private Requirement[] BuildRequirements()
         {
