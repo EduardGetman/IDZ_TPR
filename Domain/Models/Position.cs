@@ -5,7 +5,7 @@ using Domain.Competences;
 
 namespace Domain.Models
 {
-    class Position : ModelCompetence
+    public class Position : ModelCompetence
     {
         private double _importance;
 

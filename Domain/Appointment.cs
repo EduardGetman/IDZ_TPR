@@ -7,7 +7,7 @@ using Domain.Competences;
 
 namespace Domain
 {
-    class Appointment
+    public class Appointment
     {
         ModelCompetence _employee;
         Position _position;

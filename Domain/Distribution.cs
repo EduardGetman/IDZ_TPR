@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
-    class Distribution:IEnumerable<Appointment>
+    public class Distribution:IEnumerable<Appointment>
     {
         Appointment[] _appointments;
 

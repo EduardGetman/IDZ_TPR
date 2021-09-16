@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
-    class DistributionBuilder
+    public class DistributionBuilder
     {
         Position[] _positions;
         ModelCompetence[] _employees;

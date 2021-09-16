@@ -2,7 +2,7 @@
 
 namespace Domain.Competences
 {
-    class CompetenceLevelScale
+    public class CompetenceLevelScale
     {        
         Exception ConstructNameIsEmptyExcepsion()
         {

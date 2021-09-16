@@ -1,6 +1,6 @@
 ﻿namespace Domain.Competences
 {
-    class AssessmentСompetence
+    public class AssessmentСompetence
     {
         private Competence _competence;
         protected int _level;

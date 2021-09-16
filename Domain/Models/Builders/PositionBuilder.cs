@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Domain.Models.Builders
 {
-    class PositionBuilder : ModelBuilder
+    public class PositionBuilder : ModelBuilder
     {
         public PositionBuilder(CompetenceLevelScale scale, string name) : base(scale, name)
         {
