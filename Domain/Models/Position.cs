@@ -29,5 +29,17 @@ namespace Domain.Models
                 _importance = value;
             }
         }
+        public bool IsMeetsRequirements(ModelCompetence employee)
+        {
+            foreach (AssessmentСompetence requirement in Assessments)
+            {
+                AssessmentСompetence assessment;
+                if (!employee.TryGetByAssesmentCompetence(requirement,out assessment) || requirement.Level < assessment.Level)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }

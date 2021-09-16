@@ -11,6 +11,12 @@ namespace Domain
     class Distribution:IEnumerable<Appointment>
     {
         Appointment[] _appointments;
+
+        public Distribution(Appointment[] appointment)
+        {
+            _appointments = appointment;
+        }
+
         public double Effectiveness
         {
             get
