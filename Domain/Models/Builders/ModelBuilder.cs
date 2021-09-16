@@ -4,7 +4,7 @@ using Domain.Competences;
 
 namespace Domain.Models.Builders
 {
-    class ModelBuilder
+    public class ModelBuilder
     {
         protected CompetenceLevelScale _scale;
         protected Dictionary<Competence, int> _assesmentParametrs;

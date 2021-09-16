@@ -3,7 +3,7 @@ using Domain.Competences;
 
 namespace Domain.Coefficients
 {
-    class RelativeAdequacy
+    public class RelativeAdequacy
     {
         private AssessmentСompetence _requirement;
         private AssessmentСompetence _qualification;

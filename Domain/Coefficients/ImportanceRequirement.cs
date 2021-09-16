@@ -2,7 +2,7 @@
 using Domain.Competences;
 namespace Domain.Coefficients
 {
-    class ImportanceRequirement
+    public class ImportanceRequirement
     {
         public AssessmentСompetence Requirement { get;private set; }
         public Position Postion { get;private set; }

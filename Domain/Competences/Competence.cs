@@ -2,7 +2,7 @@
 
 namespace Domain.Competences
 {
-    class Competence
+    public class Competence
     {
         public Competence(CompetenceLevelScale levelScale, string name)
         {

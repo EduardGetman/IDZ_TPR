@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace View
 {
     public partial class Form1 : Form
@@ -69,23 +70,26 @@ namespace View
 
         private void calculateEmployeeAssignmentButton_Click(object sender, EventArgs e)
         {
-        }
-
-        private void maxSkillLevelNUD_ValueChanged(object sender, EventArgs e)
-        {
-            List<String> skillNames = new List<string>();
+            List<String> skillNamesList = new List<string>();
             for (int i = 1; i < necessarySkillsDGV.Columns.Count; ++i)
             {
-                skillNames.Add(necessarySkillsDGV.Rows[0].Cells[i].Value.ToString());
+                skillNamesList.Add(Convert.ToString(necessarySkillsDGV.Rows[0].Cells[i].Value));
+                //skillNamesList.Add(necessarySkillsDGV.Rows[0].Cells[i].Value.ToString());
+            }
+            string[] skillNames = skillNamesList.ToArray();
+
+            int[][] positionsLevels = new int[necessarySkillsDGV.Rows.Count - 1][];
+            for (int i = 0; i < necessarySkillsDGV.Rows.Count - 1; ++i)
+            {
+                positionsLevels[i] = new int[necessarySkillsDGV.Columns.Count - 1];
             }
 
-            int[,] positionsLevels = new int[necessarySkillsDGV.Rows.Count - 1, necessarySkillsDGV.Columns.Count - 1];
             List<List<int>> positionsLevelss = new List<List<int>>();
             for (int i = 1; i <= necessarySkillsDGV.Rows.Count; ++i)
             {
                 for (int j = 1; j <= necessarySkillsDGV.Columns.Count - 1; ++j)
                 {
-                    positionsLevels[i - 1, j - 1] = Convert.ToInt32(necessarySkillsDGV.Rows[i].Cells[j].Value);
+                    positionsLevels[i - 1][j - 1] = Convert.ToInt32(necessarySkillsDGV.Rows[i].Cells[j].Value);
                 }
             }
 
@@ -96,13 +100,17 @@ namespace View
             }
 
 
-            int[,] employsLevels = new int[employeeSkillsDGV.Rows.Count, employeeSkillsDGV.Columns.Count];
+            int[][] employsLevels = new int[employeeSkillsDGV.Rows.Count][];
+            for (int i = 0; i < employeeSkillsDGV.Rows.Count; ++i)
+            {
+                employsLevels[i] = new int[employeeSkillsDGV.Columns.Count];
+            }
 
             for (int i = 1; i <= employeeSkillsDGV.Rows.Count; ++i)
             {
                 for (int j = 1; j <= employeeSkillsDGV.Columns.Count; ++j)
                 {
-                    employsLevels[i - 1, j - 1] = Convert.ToInt32(employeeSkillsDGV.Rows[i].Cells[j].Value);
+                    employsLevels[i - 1][j - 1] = Convert.ToInt32(employeeSkillsDGV.Rows[i].Cells[j].Value);
 
                 }
             }
@@ -110,6 +118,12 @@ namespace View
             int scaleMin = Convert.ToInt32(minSkillLevelNUD.Value);
             int scaleMax = Convert.ToInt32(maxSkillLevelNUD.Value);
 
+            Analysis.main(skillNames, positionsLevels, importanceCoefficient, employsLevels, new KeyValuePair<int, int>(scaleMin, scaleMax));
+        }
+
+        private void maxSkillLevelNUD_ValueChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }

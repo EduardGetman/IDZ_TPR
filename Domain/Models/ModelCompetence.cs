@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Models
 {
-    class ModelCompetence : IEnumerable<AssessmentСompetence>
+    public class ModelCompetence : IEnumerable<AssessmentСompetence>
     {
         protected AssessmentСompetence[] _assessments;
 
