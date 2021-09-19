@@ -12,6 +12,7 @@ namespace Domain.Models.Builders
         {
             _scale = scale;
             Name = name;
+            _assesmentParametrs = new Dictionary<Competence, int>();
         }
         public CompetenceLevelScale Scale => _scale;
 
