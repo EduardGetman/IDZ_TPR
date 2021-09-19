@@ -33,7 +33,7 @@ namespace Domain.Coefficients
         }
         private void Validation(AssessmentСompetence requirement, AssessmentСompetence qualification)
         {
-            if (requirement.CompetenciesCoincide(qualification))
+            if (!requirement.CompetenciesCoincide(qualification))
             {
                 throw ConstructMismatchCompetenciesException(requirement, qualification);
             }

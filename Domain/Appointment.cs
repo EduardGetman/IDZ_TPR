@@ -40,7 +40,7 @@ namespace Domain
         public double Effectiveness => Adequacy * Position.Importance;
         private void Validation(ModelCompetence employee, Position position)
         {
-            if (position.ModelEquals(employee))
+            if (!position.ModelEquals(employee))
             {
                 throw new ArgumentException();
             }
@@ -61,7 +61,7 @@ namespace Domain
             foreach (var item in importances)
             {
                 AssessmentСompetence skill;
-                if (_employee.TryGetByAssesmentCompetence(item.Requirement, out skill))
+                if (!_employee.TryGetByAssesmentCompetence(item.Requirement, out skill))
                 {
                     throw new InvalidOperationException();
                 }
