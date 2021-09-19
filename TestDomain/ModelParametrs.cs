@@ -12,6 +12,5 @@ namespace TestDomain
     struct ModelParametrs
     {
         public CompetenceLevelScale Scale;
-        public 
     }
 }
