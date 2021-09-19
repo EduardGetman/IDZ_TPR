@@ -71,7 +71,7 @@ namespace View
         private void calculateEmployeeAssignmentButton_Click(object sender, EventArgs e)
         {
             List<String> skillNamesList = new List<string>();
-            for (int i = 1; i < necessarySkillsDGV.Columns.Count; ++i)
+            for (int i = 1; i < necessarySkillsDGV.Columns.Count - 1; ++i)
             {
                 skillNamesList.Add(Convert.ToString(necessarySkillsDGV.Rows[0].Cells[i].Value));
                 //skillNamesList.Add(necessarySkillsDGV.Rows[0].Cells[i].Value.ToString());
@@ -81,34 +81,34 @@ namespace View
             int[][] positionsLevels = new int[necessarySkillsDGV.Rows.Count - 1][];
             for (int i = 0; i < necessarySkillsDGV.Rows.Count - 1; ++i)
             {
-                positionsLevels[i] = new int[necessarySkillsDGV.Columns.Count - 1];
+                positionsLevels[i] = new int[necessarySkillsDGV.Columns.Count - 2];
             }
 
             List<List<int>> positionsLevelss = new List<List<int>>();
-            for (int i = 1; i <= necessarySkillsDGV.Rows.Count; ++i)
+            for (int i = 1; i < necessarySkillsDGV.Rows.Count; ++i)
             {
-                for (int j = 1; j <= necessarySkillsDGV.Columns.Count - 1; ++j)
+                for (int j = 1; j < necessarySkillsDGV.Columns.Count - 1; ++j)
                 {
                     positionsLevels[i - 1][j - 1] = Convert.ToInt32(necessarySkillsDGV.Rows[i].Cells[j].Value);
                 }
             }
 
-            int[] importanceCoefficient = new int[necessarySkillsDGV.Columns.Count - 1];
+            int[] importanceCoefficient = new int[necessarySkillsDGV.Columns.Count - 2];
             for (int i = 1; i < necessarySkillsDGV.Rows.Count; ++i)
             {
                 importanceCoefficient[i - 1] = Convert.ToInt32(necessarySkillsDGV.Rows[i].Cells[necessarySkillsDGV.Columns.Count - 1].Value);
             }
 
 
-            int[][] employsLevels = new int[employeeSkillsDGV.Rows.Count][];
-            for (int i = 0; i < employeeSkillsDGV.Rows.Count; ++i)
+            int[][] employsLevels = new int[employeeSkillsDGV.Rows.Count - 1][];
+            for (int i = 0; i < employeeSkillsDGV.Rows.Count - 1; ++i)
             {
-                employsLevels[i] = new int[employeeSkillsDGV.Columns.Count];
+                employsLevels[i] = new int[employeeSkillsDGV.Columns.Count - 1];
             }
 
-            for (int i = 1; i <= employeeSkillsDGV.Rows.Count; ++i)
+            for (int i = 1; i < employeeSkillsDGV.Rows.Count; ++i)
             {
-                for (int j = 1; j <= employeeSkillsDGV.Columns.Count; ++j)
+                for (int j = 1; j < employeeSkillsDGV.Columns.Count; ++j)
                 {
                     employsLevels[i - 1][j - 1] = Convert.ToInt32(employeeSkillsDGV.Rows[i].Cells[j].Value);
 
@@ -123,7 +123,56 @@ namespace View
 
         private void maxSkillLevelNUD_ValueChanged(object sender, EventArgs e)
         {
-            
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            minSkillLevelNUD.Value = 0;
+            maxSkillLevelNUD.Value = 5;
+            employeeCountNUD.Value = 2;
+            employeeCompetenceNUD.Value = 2;
+            functionCountNUD.Value = 2;
+            competenceCountNUD.Value = 2;
+            applyForEmployeeBTN_Click(this, new EventArgs());
+            applySkillsNUD_Click(this, new EventArgs());
+
+            //employeeSkillsDGV
+            //necessarySkillsDGV
+            string[][] one = new string[][]
+            {
+                new string[] { "", "Комп1", "Комп2"},
+                new string[] {"Сот1", "1", "2"},
+                new string[] { "Сот1", "3", "4"},
+            };
+
+            string[][] two = new string[][]
+            {
+                new string[] { "", "Комп1", "Комп2",""},
+                new string[] {"Фун1", "1", "2","3"},
+                new string[] { "Фун2", "3", "4", "4"},
+            };
+
+            employeeSkillsDGV.RowCount = one.Length;
+
+            for (int i = 0; i < one.Length; ++i)
+			{
+                for(int j = 0; j < one[i].Length; ++j)
+				{
+                    employeeSkillsDGV.Rows[i].Cells[j].Value = one[i][j];
+				}
+			}
+
+            necessarySkillsDGV.RowCount = two.Length;
+
+            for (int i = 0; i < two.Length; ++i)
+            {
+                for (int j = 0; j < two[i].Length; ++j)
+                {
+                    necessarySkillsDGV.Rows[i].Cells[j].Value = two[i][j];
+                }
+            }
+
         }
     }
 }
