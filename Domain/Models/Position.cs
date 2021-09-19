@@ -9,10 +9,6 @@ namespace Domain.Models
     {
         private double _importance;
 
-        public Position(AssessmentСompetence[] assessments, CompetenceLevelScale levelScale, string name) : base(assessments, levelScale, name)
-        {
-        }
-
         public Position(AssessmentСompetence[] assessments, CompetenceLevelScale levelScale, string name, double importance) : base(assessments, levelScale, name)
         {
             Importance = importance;

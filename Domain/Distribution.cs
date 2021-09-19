@@ -29,6 +29,7 @@ namespace Domain
                 return result;
             }
         }
+        public int Length => _appointments.Length;
         public Appointment this[int index]
         {
             get => _appointments[index];
