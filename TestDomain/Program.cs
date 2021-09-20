@@ -15,17 +15,17 @@ namespace TestDomain
         static ModelParametrs[] modelParametrs = new ModelParametrs[]
         {
             new ModelParametrs(scale,"Model1",0, new AssesmentParametrs[]{
-                new AssesmentParametrs("c1",3),
+                new AssesmentParametrs("c1",5),
                 new AssesmentParametrs("c2",4),
-                new AssesmentParametrs("c3",3),
+                new AssesmentParametrs("c3",5),
             }),
             new ModelParametrs(scale,"Model2",0, new AssesmentParametrs[]{
                 new AssesmentParametrs("c1",4),
-                new AssesmentParametrs("c2",4),
+                new AssesmentParametrs("c2",2),
                 new AssesmentParametrs("c3",3),
             }),
             new ModelParametrs(scale,"Model3",0, new AssesmentParametrs[]{
-                new AssesmentParametrs("c1",3),
+                new AssesmentParametrs("c1",2),
                 new AssesmentParametrs("c2",4),
                 new AssesmentParametrs("c3",4),
             }),
@@ -38,22 +38,22 @@ namespace TestDomain
         };
         static ModelParametrs[] positionParametrs = new ModelParametrs[]
         {
-            new ModelParametrs(scale,"Position1",0.25, new AssesmentParametrs[]{
-                new AssesmentParametrs("c1",2),
-                new AssesmentParametrs("c2",3),
-                new AssesmentParametrs("c3",2),
-            }),
-            new ModelParametrs(scale,"Position2",0.25, new AssesmentParametrs[]{
+            new ModelParametrs(scale,"Position1",0.1, new AssesmentParametrs[]{
                 new AssesmentParametrs("c1",3),
-                new AssesmentParametrs("c2",3),
-                new AssesmentParametrs("c3",2),
-            }),
-            new ModelParametrs(scale,"Position3",0.25, new AssesmentParametrs[]{
-                new AssesmentParametrs("c1",2),
                 new AssesmentParametrs("c2",3),
                 new AssesmentParametrs("c3",3),
             }),
-            new ModelParametrs(scale,"Position4",0.25, new AssesmentParametrs[]{
+            new ModelParametrs(scale,"Position2",0.1, new AssesmentParametrs[]{
+                new AssesmentParametrs("c1",3),
+                new AssesmentParametrs("c2",3),
+                new AssesmentParametrs("c3",3),
+            }),
+            new ModelParametrs(scale,"Position3",0.4, new AssesmentParametrs[]{
+                new AssesmentParametrs("c1",3),
+                new AssesmentParametrs("c2",3),
+                new AssesmentParametrs("c3",3),
+            }),
+            new ModelParametrs(scale,"Position4",0.4, new AssesmentParametrs[]{
                 new AssesmentParametrs("c1",3),
                 new AssesmentParametrs("c2",3),
                 new AssesmentParametrs("c3",3),

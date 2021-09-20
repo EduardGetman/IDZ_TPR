@@ -27,26 +27,44 @@ namespace Domain
         public Distribution BuildOptimalDistribution()
         {
             int[] numbers = GenerateNumbers();
-            Distribution bestDistribution = BuildDistribution(numbers);
+            Distribution bestDistribution;
+            if (!TryBuildDistribution(numbers, out bestDistribution))
+            { }
             while (NextSet(numbers))
             {
-                Distribution nextDistribution = BuildDistribution(numbers);
-                if (bestDistribution.Effectiveness < nextDistribution.Effectiveness)
+                Distribution nextDistribution;
+                if (TryBuildDistribution(numbers, out nextDistribution))
                 {
-                    bestDistribution = nextDistribution;
+                    if (bestDistribution.Effectiveness < nextDistribution.Effectiveness)
+                    {
+                        bestDistribution = nextDistribution;
+                    }
                 }
+            }
+            if (bestDistribution is null)
+            {
+                throw new ArgumentException("Ненайдено рапределение");
             }
             return bestDistribution;
         }
 
-        private Distribution BuildDistribution(int[] numbers)
+        private bool TryBuildDistribution(int[] numbers, out Distribution distibution)
         {
             List<Appointment> appointments = new List<Appointment>();
-            for (int i = 0; i < _positions.Length; i++)
+            try
             {
-                appointments.Add(new Appointment(_employees[numbers[i]], _positions[i]));
+                for (int i = 0; i < _positions.Length; i++)
+                {
+                    appointments.Add(new Appointment(_employees[numbers[i]], _positions[i]));
+                }
             }
-            return new Distribution(appointments.ToArray());
+            catch (Exception)
+            {
+                distibution = null;
+                return false;
+            }
+            distibution = new Distribution(appointments.ToArray());
+            return true;
         }
 
         private int[] GenerateNumbers()
