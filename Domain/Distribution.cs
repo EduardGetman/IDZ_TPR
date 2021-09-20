@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
-    public class Distribution:IEnumerable<Appointment>
+    public class Distribution : IEnumerable<Appointment>
     {
         Appointment[] _appointments;
 
@@ -42,6 +42,17 @@ namespace Domain
         IEnumerator IEnumerable.GetEnumerator()
         {
             return _appointments.GetEnumerator();
+        }
+        public override string ToString()
+        {
+            string result = string.Empty;
+            foreach (Appointment appointment in  _appointments)
+            {
+                result += $"Производственная функция: {appointment.PositionName} - Сотрудник:{appointment.EmployeeName}, Эффективность назначения = {appointment.Effectiveness}";
+                result += Environment.NewLine;
+            }
+            result += $"Общая эффективность назначения ={Effectiveness}";
+            return result;
         }
     }
 }
