@@ -19,6 +19,8 @@ namespace View
         public Form1()
         {
             InitializeComponent();
+            button3.Visible = true;
+            button2.Visible = true;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -50,11 +52,12 @@ namespace View
             necessarySkillsDGV.Columns.Clear();
 
             necessarySkillsDGV.Columns.Add("Должность", "Должность");
-            for (int i = 0; i < competenceCountNUD.Value; ++i)
+            for (int i = 0; i < competenceCountNUD.Value; ++i)//TODO баги отображения
             {
                 necessarySkillsDGV.Columns.Add(i.ToString(), "");
             }
 
+            necessarySkillsDGV.Rows.Add();
             for (var i = 0; i < functionCountNUD.Value; ++i)
             {
                 necessarySkillsDGV.Rows.Add();
@@ -143,7 +146,7 @@ namespace View
             Distribution appointments = Analysis.main(skillNames, positionsLevels, normalizeImportance(importanceCoefficient.ToList()).ToArray(), employsLevels,
                 new KeyValuePair<int, int>(scaleMin, scaleMax), employeeNames.ToArray(), positionNames.ToArray(), requiredCompetenceName.ToArray());
 
-            resultRTP.Text = DistributionToString(appointments);
+            resultRTP.Text = appointments.ToString();
         }
 
         static string DistributionToString(Distribution distribution)
@@ -194,7 +197,7 @@ namespace View
             {
                 new string[] { "", "Комп1", "Комп2"},
                 new string[] {"Сот1", "1", "2"},
-                new string[] { "Сот1", "3", "4"},
+                new string[] { "Сот2", "3", "4"},
             };
 
             string[][] two = new string[][]
