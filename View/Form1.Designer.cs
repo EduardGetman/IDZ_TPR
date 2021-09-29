@@ -53,6 +53,8 @@
 			this.resultRTP = new System.Windows.Forms.RichTextBox();
 			this.saveBtn = new System.Windows.Forms.Button();
 			this.loadBtn = new System.Windows.Forms.Button();
+			this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
 			((System.ComponentModel.ISupportInitialize)(this.employeeSkillsDGV)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.necessarySkillsDGV)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.employeeCompetenceNUD)).BeginInit();
@@ -264,6 +266,11 @@
 			this.loadBtn.TabIndex = 26;
 			this.loadBtn.Text = "Загрузить";
 			this.loadBtn.UseVisualStyleBackColor = true;
+			this.loadBtn.Click += new System.EventHandler(this.loadBtn_Click);
+			// 
+			// openFileDialog1
+			// 
+			this.openFileDialog1.FileName = "openFileDialog1";
 			// 
 			// Form1
 			// 
@@ -354,5 +361,7 @@
 		private System.Windows.Forms.RichTextBox resultRTP;
 		private System.Windows.Forms.Button saveBtn;
 		private System.Windows.Forms.Button loadBtn;
+		private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+		private System.Windows.Forms.OpenFileDialog openFileDialog1;
 	}
 }

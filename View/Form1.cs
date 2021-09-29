@@ -13,6 +13,8 @@ using Domain.Models.Builders;
 using Domain;
 using System.Xml.Serialization;
 using System.IO;
+using System.Text.Json;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace View
 {
@@ -23,7 +25,10 @@ namespace View
             InitializeComponent();
             button3.Visible = true;
             button2.Visible = true;
-        }
+
+			openFileDialog1.Filter = "Text files (*.json)|*.json|All files (*.*)|*.*";
+			saveFileDialog1.Filter = "Text files (*.json)|*.json|All files (*.*)|*.*";
+		}
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -54,7 +59,7 @@ namespace View
             necessarySkillsDGV.Columns.Clear();
 
             necessarySkillsDGV.Columns.Add("Должность", "Должность");
-            for (int i = 0; i < competenceCountNUD.Value; ++i)//TODO баги отображения
+            for (int i = 0; i < competenceCountNUD.Value; ++i)
             {
                 necessarySkillsDGV.Columns.Add(i.ToString(), "");
             }
@@ -283,41 +288,105 @@ namespace View
             }
         }
 
-		private void saveBtn_Click(object sender, EventArgs e)
-		{
-            List<List<String>> matrixOne = new List<List<string>>();
-            foreach(DataGridViewRow row in employeeSkillsDGV.Rows)
-			{
-                var matrRow = new List<String>();
-                for(int i=0;i<row.Cells.Count;++i)
-				{
-                    matrRow.Add(Convert.ToString(row.Cells[i].Value));
-				}
-                matrixOne.Add(matrRow);
-			}
+        private void saveBtn_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog1.ShowDialog() == DialogResult.Cancel)
+                return;
 
-			List<List<String>> matrixTwo = new List<List<string>>();
-            for(int i=0;i<necessarySkillsDGV.Rows.Count;++i)
+            string filename = saveFileDialog1.FileName;
+
+            String[][] matrixOne = new String[employeeSkillsDGV.Rows.Count][];
+
+            for (int i = 0; i < employeeSkillsDGV.Rows.Count; ++i)
             {
-                var matrRow = new List<String>();
-                for (int j=0;j<necessarySkillsDGV.Rows[i].Cells.Count;++j)
-				{
-                    matrRow.Add(Convert.ToString(necessarySkillsDGV.Rows[i].Cells[j].Value));
-				}
-                matrixTwo.Add(matrRow);
-			}
+                String[] matrRow = new String[employeeSkillsDGV.ColumnCount];
+                for (int j = 0; j < employeeSkillsDGV.Rows[i].Cells.Count; ++j)
+                {
+                    matrRow[j] = Convert.ToString(employeeSkillsDGV.Rows[i].Cells[j].Value);
+                }
+                matrixOne[i] = matrRow;
+            }
+
+            String[][] matrixTwo = new String[necessarySkillsDGV.Rows.Count][];
+
+            for (int i = 0; i < necessarySkillsDGV.Rows.Count; ++i)
+            {
+                String[] matrRow = new String[necessarySkillsDGV.ColumnCount];
+                for (int j = 0; j < necessarySkillsDGV.Rows[i].Cells.Count; ++j)
+                {
+                    matrRow[j] = Convert.ToString(necessarySkillsDGV.Rows[i].Cells[j].Value);
+                }
+                matrixTwo[i] = matrRow;
+            }
 
             ViewData viewData = new ViewData(matrixOne, matrixTwo,
                 Convert.ToInt32(minSkillLevelNUD.Value), Convert.ToInt32(maxSkillLevelNUD.Value),
                 Convert.ToInt32(employeeCountNUD.Value), Convert.ToInt32(employeeCompetenceNUD.Value),
-                Convert.ToInt32(functionCountNUD.Value), Convert.ToInt32(competenceCountNUD.Value));
+             Convert.ToInt32(functionCountNUD.Value), Convert.ToInt32(competenceCountNUD.Value));
 
-            XmlSerializer serializer = new XmlSerializer(viewData.GetType());
+           
+            File.WriteAllText(filename, JsonSerializer.Serialize(viewData));
 
-            FileStream f = new FileStream("text.xml", FileMode.Create, FileAccess.Write, FileShare.Read);
-            serializer.Serialize(f, viewData);
+            //BinaryFormatter formatter = new BinaryFormatter();
 
-            MessageBox.Show("Сохранено");
+            //using (FileStream fs = new FileStream(filename, FileMode.OpenOrCreate))
+            //{
+            //	formatter.Serialize(fs, viewData);
+            //}
         }
+
+		private void loadBtn_Click(object sender, EventArgs e)
+		{
+            if (openFileDialog1.ShowDialog() == DialogResult.Cancel)
+                return;
+
+            String jsonString = File.ReadAllText(openFileDialog1.FileName);
+            ViewData deserilize = JsonSerializer.Deserialize<ViewData>(jsonString);
+
+
+            //using (FileStream fs = new FileStream(openFileDialog1.FileName, FileMode.OpenOrCreate))
+            //{
+            //    deserilize = (ViewData)formatter.Deserialize(fs);
+            //}
+
+            minSkillLevelNUD.Value = deserilize.minSkillLevel;
+            maxSkillLevelNUD.Value = deserilize.maxSkillLevel;
+
+            employeeCountNUD.Value = deserilize.employeeCount;
+            employeeCompetenceNUD.Value = deserilize.employeeCompetenceCount;
+
+            functionCountNUD.Value = deserilize.functionCount;
+            competenceCountNUD.Value = deserilize.competenceCount;
+
+            employeeSkillsDGV.Rows.Clear();
+            employeeSkillsDGV.Columns.Clear();
+
+            employeeSkillsDGV.Columns.Add("ФИО сотрудников", "ФИО сотрудников");
+            for (int i = 0; i < employeeCompetenceNUD.Value; ++i)
+            {
+                employeeSkillsDGV.Columns.Add(i.ToString(), "");
+            }
+
+            foreach (var  row in deserilize.matrixOne)
+			{
+                employeeSkillsDGV.Rows.Add(row);
+            }
+
+			necessarySkillsDGV.Rows.Clear();
+			necessarySkillsDGV.Columns.Clear();
+
+			necessarySkillsDGV.Columns.Add("Должность", "Должность");
+			for (int i = 0; i < competenceCountNUD.Value; ++i)
+			{
+				necessarySkillsDGV.Columns.Add(i.ToString(), "");
+			}
+
+			foreach (var row in deserilize.matrixTwo)
+			{
+				necessarySkillsDGV.Rows.Add(row);
+			}
+
+
+		}
 	}
 }
