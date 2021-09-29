@@ -51,6 +51,8 @@
 			this.button3 = new System.Windows.Forms.Button();
 			this.button2 = new System.Windows.Forms.Button();
 			this.resultRTP = new System.Windows.Forms.RichTextBox();
+			this.saveBtn = new System.Windows.Forms.Button();
+			this.loadBtn = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.employeeSkillsDGV)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.necessarySkillsDGV)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.employeeCompetenceNUD)).BeginInit();
@@ -194,9 +196,9 @@
 			// 
 			// label7
 			// 
-			this.label7.Location = new System.Drawing.Point(11, 587);
+			this.label7.Location = new System.Drawing.Point(12, 585);
 			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(151, 15);
+			this.label7.Size = new System.Drawing.Size(168, 15);
 			this.label7.TabIndex = 19;
 			this.label7.Text = "Максимальный уровень компетенции";
 			// 
@@ -244,11 +246,32 @@
 			this.resultRTP.TabIndex = 24;
 			this.resultRTP.Text = "";
 			// 
+			// saveBtn
+			// 
+			this.saveBtn.Location = new System.Drawing.Point(12, 605);
+			this.saveBtn.Name = "saveBtn";
+			this.saveBtn.Size = new System.Drawing.Size(75, 23);
+			this.saveBtn.TabIndex = 25;
+			this.saveBtn.Text = "Сохранить";
+			this.saveBtn.UseVisualStyleBackColor = true;
+			this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
+			// 
+			// loadBtn
+			// 
+			this.loadBtn.Location = new System.Drawing.Point(12, 634);
+			this.loadBtn.Name = "loadBtn";
+			this.loadBtn.Size = new System.Drawing.Size(75, 23);
+			this.loadBtn.TabIndex = 26;
+			this.loadBtn.Text = "Загрузить";
+			this.loadBtn.UseVisualStyleBackColor = true;
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1446, 839);
+			this.Controls.Add(this.loadBtn);
+			this.Controls.Add(this.saveBtn);
 			this.Controls.Add(this.resultRTP);
 			this.Controls.Add(this.button2);
 			this.Controls.Add(this.button3);
@@ -329,5 +352,7 @@
 		private System.Windows.Forms.Button button3;
 		private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.RichTextBox resultRTP;
+		private System.Windows.Forms.Button saveBtn;
+		private System.Windows.Forms.Button loadBtn;
 	}
 }

@@ -280,5 +280,42 @@ namespace View
                 }
             }
         }
-    }
+
+		private void saveBtn_Click(object sender, EventArgs e)
+		{
+            List<List<String>> matrixOne = new List<List<string>>();
+            foreach(DataGridViewRow row in employeeSkillsDGV.Rows)
+			{
+                var matrRow = new List<String>();
+                for(int i=0;i<row.Cells.Count;++i)
+				{
+                    matrRow.Add(Convert.ToString(row.Cells[i].Value));
+				}
+                matrixOne.Add(matrRow);
+			}
+
+			List<List<String>> matrixTwo = new List<List<string>>();
+            for(int i=0;i<necessarySkillsDGV.Rows.Count;++i)
+			{
+                for(int j=0;j<necessarySkillsDGV.Rows[i].Cells.Count;++j)
+				{
+
+				}
+			}
+
+			//         foreach(DataGridView row in necessarySkillsDGV.Rows)
+			//{
+			//             var matrRow = new List<String>();
+			//             for (int i = 0; i < row.Cells.Count; ++i)
+			//             {
+			//                 matrRow.Add(Convert.ToString(row.Cells[i].Value));
+			//             }
+			//             matrixTwo.Add(matrRow);
+			//         }
+
+
+			//ViewData viewData = new ViewData(matrixOne, matrixTwo, minSkillLevelNUD.Value, maxSkillLevelNUD.Value,)
+
+		}
+	}
 }
