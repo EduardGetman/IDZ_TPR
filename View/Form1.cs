@@ -73,12 +73,6 @@ namespace View
             necessarySkillsDGV.Rows[0].HeaderCell.Value = "Названия компетенций";
 
             necessarySkillsDGV.Columns.Add("Коэффициент важности производственной функции", "Коэффициент важности производственной функции");
-
-            //employeeSkillsDGV.Rows.Add();
-            //employeeSkillsDGV.Rows.Add();
-
-            //employeeSkillsDGV.Rows[Convert.ToInt32(competenceCountNUD.Value) + 1].HeaderCell.Value = "Минимальный навык";
-            //employeeSkillsDGV.Rows[Convert.ToInt32(competenceCountNUD.Value) + 2].HeaderCell.Value = "Максимальный навык";
         }
 
         private void calculateEmployeeAssignmentButton_Click(object sender, EventArgs e)
@@ -312,7 +306,7 @@ namespace View
             for (int i = 0; i < necessarySkillsDGV.Rows.Count; ++i)
             {
                 String[] matrRow = new String[necessarySkillsDGV.ColumnCount];
-                for (int j = 0; j < necessarySkillsDGV.Rows[i].Cells.Count; ++j)
+                for (int j = 0; j < necessarySkillsDGV.ColumnCount; ++j)
                 {
                     matrRow[j] = Convert.ToString(necessarySkillsDGV.Rows[i].Cells[j].Value);
                 }
@@ -379,14 +373,17 @@ namespace View
 			for (int i = 0; i < competenceCountNUD.Value; ++i)
 			{
 				necessarySkillsDGV.Columns.Add(i.ToString(), "");
-			}
+            }
+            necessarySkillsDGV.Columns.Add("Коэффициент важности производственной функции", "Коэффициент важности производственной функции");
 
-			foreach (var row in deserilize.matrixTwo)
+            foreach (var row in deserilize.matrixTwo)
 			{
 				necessarySkillsDGV.Rows.Add(row);
 			}
 
+            necessarySkillsDGV.Rows[0].HeaderCell.Value = "Названия компетенций";
+            employeeSkillsDGV.Rows[0].HeaderCell.Value = "Названия компетенций";
 
-		}
+        }
 	}
 }
