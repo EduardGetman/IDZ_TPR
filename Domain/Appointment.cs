@@ -54,10 +54,10 @@ namespace Domain
             }
             return importances.ToArray();
         }
-        public RelativeAdequacy[] CalculateRelativeAdequceArray()
+        public AbsoluteAdequacy[] CalculateRelativeAdequceArray()
         {
             ImportanceRequirement[] importances = CalculateImportanceRequirement();
-            List<RelativeAdequacy> adequacies = new List<RelativeAdequacy>();
+            List<AbsoluteAdequacy> adequacies = new List<AbsoluteAdequacy>();
             foreach (var item in importances)
             {
                 AssessmentСompetence skill;
@@ -65,14 +65,14 @@ namespace Domain
                 {
                     throw new InvalidOperationException();
                 }
-                adequacies.Add(new RelativeAdequacy(item, skill));
+                adequacies.Add(new AbsoluteAdequacy(item, skill));
             }
             return adequacies.ToArray();
         }
         public void DetermineAdequacyAppointment()
         {
             double adequacy = 0;
-            RelativeAdequacy[] adequacies = CalculateRelativeAdequceArray();
+            AbsoluteAdequacy[] adequacies = CalculateRelativeAdequceArray();
             foreach (var item in adequacies)
             {
                 adequacy += item.Adequacy;

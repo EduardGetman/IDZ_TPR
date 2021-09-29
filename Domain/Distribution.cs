@@ -30,6 +30,9 @@ namespace Domain
             }
         }
         public int Length => _appointments.Length;
+
+        public Appointment[] Appointments { get => _appointments; set => _appointments = value; }
+
         public Appointment this[int index]
         {
             get => _appointments[index];
@@ -45,13 +48,20 @@ namespace Domain
         }
         public override string ToString()
         {
+            return DistributionString();
+        }
+
+        private string DistributionString()
+        {
             string result = string.Empty;
-            foreach (Appointment appointment in  _appointments)
+            foreach (Appointment appointment in _appointments)
             {
-                result += $"Производственная функция: {appointment.PositionName} - Сотрудник:{appointment.EmployeeName}, Эффективность назначения = {appointment.Effectiveness}";
+                result += $"Производственная функция: {appointment.PositionName} - " +
+                    $"Сотрудник:{appointment.EmployeeName}, " +
+                    $"Эффективность назначения = {appointment.Effectiveness:0.00}";
                 result += Environment.NewLine;
             }
-            result += $"Общая эффективность назначения ={Effectiveness}";
+            result += $"Общая эффективность назначения ={Effectiveness:0.00}";
             return result;
         }
     }

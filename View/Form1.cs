@@ -147,6 +147,9 @@ namespace View
             Distribution appointments = Analysis.main(skillNames, positionsLevels, normalizeImportance(importanceCoefficient.ToList()).ToArray(), employsLevels,
                 new KeyValuePair<int, int>(scaleMin, scaleMax), employeeNames.ToArray(), positionNames.ToArray(), requiredCompetenceName.ToArray());
 
+            Form form = new Form2(appointments);
+            form.Show();
+
             resultRTP.Text = appointments.ToString();
         }
 
@@ -246,19 +249,19 @@ namespace View
             string[][] one = new string[][]
             {
                 new string[] { "", "c1", "c2","c3"},
-                new string[] { "Model1", "3", "4","4"},
-                new string[] { "Model2", "4","4","3"},
-                new string[] { "Model3", "3", "4","4"},
-                new string[] { "Model4", "4","4","4" }
+                new string[] { "Сотрудник1", "3", "4","4"},
+                new string[] { "Сотрудник2", "4","4","3"},
+                new string[] { "Сотрудник3", "3", "4","4"},
+                new string[] { "Сотрудник4", "4","4","4" }
             };
 
             string[][] two = new string[][]
             {
                 new string[] { "", "c1", "c2","c3", ""},
-                new string[] { "Position1", "2", "3","2", "1"},
-                new string[] { "Position2", "3", "3","2", "1"},
-                new string[] { "Position3", "2", "3","3", "1"},
-                new string[] { "Position4", "3", "3","3", "1"}
+                new string[] { "Функция1", "2", "3","2", "1"},
+                new string[] { "Функция2", "3", "3","2", "1"},
+                new string[] { "Функция3", "2", "3","3", "1"},
+                new string[] { "Функция4", "3", "3","3", "1"}
             };
 
             employeeSkillsDGV.RowCount = one.Length;
