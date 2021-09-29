@@ -11,6 +11,8 @@ using Domain.Models;
 using Domain.Competences;
 using Domain.Models.Builders;
 using Domain;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace View
 {
@@ -296,26 +298,26 @@ namespace View
 
 			List<List<String>> matrixTwo = new List<List<string>>();
             for(int i=0;i<necessarySkillsDGV.Rows.Count;++i)
-			{
-                for(int j=0;j<necessarySkillsDGV.Rows[i].Cells.Count;++j)
+            {
+                var matrRow = new List<String>();
+                for (int j=0;j<necessarySkillsDGV.Rows[i].Cells.Count;++j)
 				{
-
+                    matrRow.Add(Convert.ToString(necessarySkillsDGV.Rows[i].Cells[j].Value));
 				}
+                matrixTwo.Add(matrRow);
 			}
 
-			//         foreach(DataGridView row in necessarySkillsDGV.Rows)
-			//{
-			//             var matrRow = new List<String>();
-			//             for (int i = 0; i < row.Cells.Count; ++i)
-			//             {
-			//                 matrRow.Add(Convert.ToString(row.Cells[i].Value));
-			//             }
-			//             matrixTwo.Add(matrRow);
-			//         }
+            ViewData viewData = new ViewData(matrixOne, matrixTwo,
+                Convert.ToInt32(minSkillLevelNUD.Value), Convert.ToInt32(maxSkillLevelNUD.Value),
+                Convert.ToInt32(employeeCountNUD.Value), Convert.ToInt32(employeeCompetenceNUD.Value),
+                Convert.ToInt32(functionCountNUD.Value), Convert.ToInt32(competenceCountNUD.Value));
 
+            XmlSerializer serializer = new XmlSerializer(viewData.GetType());
 
-			//ViewData viewData = new ViewData(matrixOne, matrixTwo, minSkillLevelNUD.Value, maxSkillLevelNUD.Value,)
+            FileStream f = new FileStream("text.xml", FileMode.Create, FileAccess.Write, FileShare.Read);
+            serializer.Serialize(f, viewData);
 
-		}
+            MessageBox.Show("Сохранено");
+        }
 	}
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace View
 {
+	[Serializable]
 	public class ViewData
 	{
 		List<List<String>> matrixOne;
@@ -16,6 +17,8 @@ namespace View
 		int employeeCompetenceCount;
 		int functionCount;
 		int competenceCount;
+
+		public ViewData() { }
 
 		public ViewData(List<List<String>> matrixOne,
 		List<List<String>> matrixTwo,
