@@ -3,7 +3,7 @@ using Domain.Competences;
 
 namespace Domain.Coefficients
 {
-    public class RelativeAdequacy
+    public class AbsoluteAdequacy
     {
         private AssessmentСompetence _requirement;
         private AssessmentСompetence _qualification;
@@ -15,7 +15,7 @@ namespace Domain.Coefficients
         public int RequirementLevel => _requirement.Level;
         public int QualificationLevel => _qualification.Level;
 
-        public RelativeAdequacy(ImportanceRequirement importance, AssessmentСompetence qualification)
+        public AbsoluteAdequacy(ImportanceRequirement importance, AssessmentСompetence qualification)
         {
             Validation(importance.Requirement, qualification);
             _requirement = importance.Requirement;
@@ -23,7 +23,7 @@ namespace Domain.Coefficients
             _importance = importance.ImportanceAssessment;
             CalculationAdequacy();
         }
-        public RelativeAdequacy(AssessmentСompetence requirement, AssessmentСompetence qualification)
+        public AbsoluteAdequacy(AssessmentСompetence requirement, AssessmentСompetence qualification)
         {
             Validation(requirement, qualification);
             _requirement = requirement;
@@ -56,8 +56,12 @@ namespace Domain.Coefficients
             {
                 Adequacy = 1;
             }
-            Adequacy = (Math.Min(QualificationLevel, RequirementLevel) / (double)RequirementLevel) * _importance;
+            Adequacy = (CalcRelativeAdequacy()) * _importance;
         }
 
+        public double CalcRelativeAdequacy()
+        {
+            return Math.Min(QualificationLevel, RequirementLevel) / (double)RequirementLevel;
+        }
     }
 }
