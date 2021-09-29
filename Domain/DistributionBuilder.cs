@@ -14,7 +14,7 @@ namespace Domain
 
         public DistributionBuilder(Position[] positions, ModelCompetence[] employees)
         {
-            if (positions.Length < employees.Length)
+            if (positions.Length > employees.Length)
             {
                 throw new ArgumentException();
             }

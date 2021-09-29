@@ -26,14 +26,14 @@ namespace View
 
 			List<ModelParametrs> modelParametrs = new List<ModelParametrs>();
 
-			for (int i = 0; i < importanceCoefficient.Length; ++i)
+			for (int i = 0; i < employeeNames.Length; ++i)
 			{
 				List<AssesmentParametrs> assesmentParametrs = new List<AssesmentParametrs>();
 				for (int j = 0; j < skillName.Length; ++j)
 				{
 					assesmentParametrs.Add(new AssesmentParametrs(skillName[j], employsLevels[i][j]));
 				}
-				modelParametrs.Add(new ModelParametrs(scale, employeeNames[i], importanceCoefficient[i],
+				modelParametrs.Add(new ModelParametrs(scale, employeeNames[i],
 	assesmentParametrs.ToArray()));
 			}
 

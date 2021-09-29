@@ -23,6 +23,13 @@ namespace View
             Importance = importance;
             Assesments = assesments;
         }
+        public ModelParametrs(CompetenceLevelScale scale, string name, AssesmentParametrs[] assesments)
+        {
+            Scale = scale;
+            Name = name;
+            Importance = 0;
+            Assesments = assesments;
+        }
     }
 
     struct AssesmentParametrs
