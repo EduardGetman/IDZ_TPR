@@ -56,6 +56,7 @@ namespace Domain
             foreach (Position position in positions)
             {
                 positionsLog += $"Функция {position.Name}; Нормализованная важность функции = {position.Importance:0.00};" +
+               
                     $"{newLine}Требования:";
                 string competencesString = string.Empty;
                 position.ToList().ForEach(x => competencesString += $" {x.Name} = {x.Level};");
