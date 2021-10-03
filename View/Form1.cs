@@ -26,9 +26,9 @@ namespace View
             button3.Visible = true;
             button2.Visible = true;
 
-			openFileDialog1.Filter = "Text files (*.json)|*.json|All files (*.*)|*.*";
-			saveFileDialog1.Filter = "Text files (*.json)|*.json|All files (*.*)|*.*";
-		}
+            openFileDialog1.Filter = "Text files (*.json)|*.json|All files (*.*)|*.*";
+            saveFileDialog1.Filter = "Text files (*.json)|*.json|All files (*.*)|*.*";
+        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -143,26 +143,28 @@ namespace View
             {
                 requiredCompetenceName.Add(Convert.ToString(necessarySkillsDGV.Rows[0].Cells[i].Value));
             }
-
-            Distribution appointments = Analysis.main(skillNames, positionsLevels, normalizeImportance(importanceCoefficient.ToList()).ToArray(), employsLevels,
-                new KeyValuePair<int, int>(scaleMin, scaleMax), employeeNames.ToArray(), positionNames.ToArray(), requiredCompetenceName.ToArray());
-
+            Distribution appointments;
+            try
+            {
+                appointments = Analysis.main(
+                    skillNames,
+                    positionsLevels,
+                    normalizeImportance(importanceCoefficient.ToList()).ToArray(),
+                    employsLevels,
+                    new KeyValuePair<int, int>(scaleMin, scaleMax),
+                    employeeNames.ToArray(),
+                    positionNames.ToArray(),
+                    requiredCompetenceName.ToArray());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка при вычислениях!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw;
+            }
             Form form = new Form2(appointments);
             form.Show();
 
             resultRTP.Text = appointments.ToString();
-        }
-
-        static string DistributionToString(Distribution distribution)
-        {
-            string result = string.Empty;
-            foreach (Appointment appointment in distribution)
-            {
-                result += $"Position: {appointment.PositionName} - Employee:{appointment.EmployeeName}, Effectiveness = {appointment.Effectiveness}";
-                result += Environment.NewLine;
-            }
-            result += $"Total effectiveness ={distribution.Effectiveness}";
-            return result;
         }
 
         public List<Double> normalizeImportance(List<int> source)
@@ -321,7 +323,7 @@ namespace View
                 Convert.ToInt32(employeeCountNUD.Value), Convert.ToInt32(employeeCompetenceNUD.Value),
              Convert.ToInt32(functionCountNUD.Value), Convert.ToInt32(competenceCountNUD.Value));
 
-           
+
             File.WriteAllText(filename, JsonSerializer.Serialize(viewData));
 
             //BinaryFormatter formatter = new BinaryFormatter();
@@ -332,8 +334,8 @@ namespace View
             //}
         }
 
-		private void loadBtn_Click(object sender, EventArgs e)
-		{
+        private void loadBtn_Click(object sender, EventArgs e)
+        {
             if (openFileDialog1.ShowDialog() == DialogResult.Cancel)
                 return;
 
@@ -364,29 +366,64 @@ namespace View
                 employeeSkillsDGV.Columns.Add(i.ToString(), "");
             }
 
-            foreach (var  row in deserilize.matrixOne)
-			{
+            foreach (var row in deserilize.matrixOne)
+            {
                 employeeSkillsDGV.Rows.Add(row);
             }
 
-			necessarySkillsDGV.Rows.Clear();
-			necessarySkillsDGV.Columns.Clear();
+            necessarySkillsDGV.Rows.Clear();
+            necessarySkillsDGV.Columns.Clear();
 
-			necessarySkillsDGV.Columns.Add("Должность", "Должность");
-			for (int i = 0; i < competenceCountNUD.Value; ++i)
-			{
-				necessarySkillsDGV.Columns.Add(i.ToString(), "");
+            necessarySkillsDGV.Columns.Add("Должность", "Должность");
+            for (int i = 0; i < competenceCountNUD.Value; ++i)
+            {
+                necessarySkillsDGV.Columns.Add(i.ToString(), "");
             }
             necessarySkillsDGV.Columns.Add("Коэффициент важности производственной функции", "Коэффициент важности производственной функции");
 
             foreach (var row in deserilize.matrixTwo)
-			{
-				necessarySkillsDGV.Rows.Add(row);
-			}
+            {
+                necessarySkillsDGV.Rows.Add(row);
+            }
 
             necessarySkillsDGV.Rows[0].HeaderCell.Value = "Названия компетенций";
             employeeSkillsDGV.Rows[0].HeaderCell.Value = "Названия компетенций";
 
         }
-	}
+
+        private void InpuNamesButton_Click(object sender, EventArgs e)
+        {
+            InputNames names;
+            FormInputNames formInputNames;
+            if (TryGetNames(out names))
+            {
+                formInputNames = new FormInputNames(names);
+            }
+            else
+            {
+                formInputNames = new FormInputNames();
+            }
+            formInputNames.ShowDialog();
+            names = formInputNames.Names;
+            if (names is null)
+            {
+                return;
+            }
+            SetNames(names);
+        }
+
+        // Если на форме уже есть имена компетенций, сотрудников и должностей,
+        // то помещаешь их в names и возвращаешь true иначе names = null, return false
+        private bool TryGetNames(out InputNames names)
+        {
+            names = null;
+            return false;
+            throw new NotImplementedException();
+        }
+        // Заполняешь имена столбцов и колонок из names
+        private void SetNames(InputNames names)
+        {
+
+        }
+    }
 }
