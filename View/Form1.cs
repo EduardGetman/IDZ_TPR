@@ -26,6 +26,17 @@ namespace View
             button3.Visible = true;
             button2.Visible = true;
 
+            label3.Visible = false;
+            label4.Visible = false;
+            label5.Visible = false;
+            label6.Visible = false;
+            employeeCountNUD.Visible = false;
+            employeeCompetenceNUD.Visible = false;
+            functionCountNUD.Visible = false;
+            competenceCountNUD.Visible = false;
+            applyForEmployeeBTN.Visible = false;
+            applySkillsNUD.Visible = false;
+
             openFileDialog1.Filter = "Text files (*.json)|*.json|All files (*.*)|*.*";
             saveFileDialog1.Filter = "Text files (*.json)|*.json|All files (*.*)|*.*";
         }
@@ -448,6 +459,7 @@ namespace View
             competenceCountNUD.Value = names.CompetenceNames.Count;
             functionCountNUD.Value = names.PositionNames.Count;
 
+
             employeeSkillsDGV.Rows.Clear();
             employeeSkillsDGV.Columns.Clear();
 
@@ -455,6 +467,12 @@ namespace View
             for (int i = 0; i < employeeCompetenceNUD.Value; ++i)
             {
                 employeeSkillsDGV.Columns.Add(i.ToString(), "");
+            }
+
+            employeeSkillsDGV.Rows.Add();
+            foreach (var row in names.EmployeeNames)
+            {
+                employeeSkillsDGV.Rows.Add(row);
             }
 
             necessarySkillsDGV.Rows.Clear();
@@ -467,17 +485,27 @@ namespace View
             }
             necessarySkillsDGV.Columns.Add("Коэффициент важности производственной функции", "Коэффициент важности производственной функции");
 
+            necessarySkillsDGV.Rows.Add();
+            foreach (var row in names.PositionNames)
+            {
+                necessarySkillsDGV.Rows.Add(row);
+            }
+
             necessarySkillsDGV.Rows[0].HeaderCell.Value = "Названия компетенций";
             employeeSkillsDGV.Rows[0].HeaderCell.Value = "Названия компетенций";
 
-            for (int i = 1; i < employeeSkillsDGV.Rows.Count; ++i)
-                employeeSkillsDGV.Rows[i].Cells[0].Value = names.EmployeeNames.ElementAt(i - 1);
+
+            //for (int i = 1; i < employeeSkillsDGV.Rows.Count; ++i)
+            //    employeeSkillsDGV.Rows[i].Cells[0].Value = names.EmployeeNames.ElementAt(i - 1);
 
             for (int i = 1; i < employeeSkillsDGV.Columns.Count; ++i)
                 employeeSkillsDGV.Rows[0].Cells[i].Value = names.CompetenceNames.ElementAt(i - 1);
 
-            for (int i = 0; i < necessarySkillsDGV.Rows.Count; ++i)
-                necessarySkillsDGV.Rows[i].Cells[0].Value = names.PositionNames.ElementAt(i - 1);
+            for (int i = 1; i < names.PositionNames.Count + 1; ++i)
+                necessarySkillsDGV.Rows[0].Cells[i].Value = names.PositionNames.ElementAt(i - 1);
+
+            //for (int i = 0; i < necessarySkillsDGV.Rows.Count; ++i)
+            //    necessarySkillsDGV.Rows[i].Cells[0].Value = names.PositionNames.ElementAt(i - 1);
         }
     }
 }
