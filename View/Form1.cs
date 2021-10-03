@@ -416,14 +416,68 @@ namespace View
         // то помещаешь их в names и возвращаешь true иначе names = null, return false
         private bool TryGetNames(out InputNames names)
         {
-            names = null;
-            return false;
-            throw new NotImplementedException();
+            names = new InputNames(new List<string>(), new List<string>(), new List<string>());
+            if (employeeSkillsDGV.Rows.Count == 0)
+            {
+                names = null;
+                return false;
+            }
+
+            if (necessarySkillsDGV.Rows.Count == 0)
+            {
+                names = null;
+                return false;
+            }
+
+            for (int i = 1; i < employeeSkillsDGV.Rows.Count; ++i)
+                names.EmployeeNames.Add(Convert.ToString(employeeSkillsDGV.Rows[i].Cells[0].Value));
+
+            for (int i = 1; i < employeeSkillsDGV.Columns.Count; ++i)
+                names.CompetenceNames.Add(Convert.ToString(employeeSkillsDGV.Rows[0].Cells[i].Value));
+
+            for (int i = 1; i < necessarySkillsDGV.Rows.Count; ++i)
+                names.PositionNames.Add(Convert.ToString(necessarySkillsDGV.Rows[i].Cells[0].Value));
+
+            return true;
         }
         // Заполняешь имена столбцов и колонок из names
         private void SetNames(InputNames names)
         {
+            employeeCountNUD.Value = names.EmployeeNames.Count;
+            employeeCompetenceNUD.Value = names.CompetenceNames.Count;
+            competenceCountNUD.Value = names.CompetenceNames.Count;
+            functionCountNUD.Value = names.PositionNames.Count;
 
+            employeeSkillsDGV.Rows.Clear();
+            employeeSkillsDGV.Columns.Clear();
+
+            employeeSkillsDGV.Columns.Add("ФИО сотрудников", "ФИО сотрудников");
+            for (int i = 0; i < employeeCompetenceNUD.Value; ++i)
+            {
+                employeeSkillsDGV.Columns.Add(i.ToString(), "");
+            }
+
+            necessarySkillsDGV.Rows.Clear();
+            necessarySkillsDGV.Columns.Clear();
+
+            necessarySkillsDGV.Columns.Add("Должность", "Должность");
+            for (int i = 0; i < competenceCountNUD.Value; ++i)
+            {
+                necessarySkillsDGV.Columns.Add(i.ToString(), "");
+            }
+            necessarySkillsDGV.Columns.Add("Коэффициент важности производственной функции", "Коэффициент важности производственной функции");
+
+            necessarySkillsDGV.Rows[0].HeaderCell.Value = "Названия компетенций";
+            employeeSkillsDGV.Rows[0].HeaderCell.Value = "Названия компетенций";
+
+            for (int i = 1; i < employeeSkillsDGV.Rows.Count; ++i)
+                employeeSkillsDGV.Rows[i].Cells[0].Value = names.EmployeeNames.ElementAt(i - 1);
+
+            for (int i = 1; i < employeeSkillsDGV.Columns.Count; ++i)
+                employeeSkillsDGV.Rows[0].Cells[i].Value = names.CompetenceNames.ElementAt(i - 1);
+
+            for (int i = 0; i < necessarySkillsDGV.Rows.Count; ++i)
+                necessarySkillsDGV.Rows[i].Cells[0].Value = names.PositionNames.ElementAt(i - 1);
         }
     }
 }

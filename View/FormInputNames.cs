@@ -24,6 +24,7 @@ namespace View
 
         public FormInputNames(InputNames names)
         {
+            InitializeComponent();
             SetCompetencesName(names.CompetenceNames.ToArray());
             SetEmployeesName(names.EmployeeNames.ToArray());
             SetPositionsName(names.PositionNames.ToArray());
@@ -59,9 +60,9 @@ namespace View
         {
             for (int i = 0; i < names.Length; i++)
             {
-                if (dataGridView1.RowCount <= i)
-                {
-                    dataGridView1.Rows.Add();                    
+				if (dataGridView1.RowCount <= i)
+				{
+					dataGridView1.Rows.Add();                    
                 }
                 dataGridView1[columnNumber, i].Value = names[i];
             }
