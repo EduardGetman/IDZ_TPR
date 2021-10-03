@@ -15,8 +15,9 @@ namespace View
         private const int _competenceColumn = 0;
         private const int _employeeColumn = 1;
         private const int _positionColumn = 2;
+        private const int _columnCount = 3;
 
-        public InputNames Names { get; private set;}
+        public InputNames Names { get; private set; }
         public FormInputNames()
         {
             InitializeComponent();
@@ -25,9 +26,10 @@ namespace View
         public FormInputNames(InputNames names)
         {
             InitializeComponent();
-            SetCompetencesName(names.CompetenceNames.ToArray());
-            SetEmployeesName(names.EmployeeNames.ToArray());
-            SetPositionsName(names.PositionNames.ToArray());
+            SetInputNameToDGV(names);
+            //SetCompetencesName(names.CompetenceNames.ToArray());
+            //SetEmployeesName(names.EmployeeNames.ToArray());
+            //SetPositionsName(names.PositionNames.ToArray());
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -60,12 +62,37 @@ namespace View
         {
             for (int i = 0; i < names.Length; i++)
             {
-				if (dataGridView1.RowCount <= i)
-				{
-					dataGridView1.Rows.Add();                    
+                if (dataGridView1.RowCount <= i)
+                {
+                    dataGridView1.Rows.Add();
                 }
                 dataGridView1[columnNumber, i].Value = names[i];
             }
+        }
+        private void SetInputNameToDGV(InputNames names)
+        {
+            int rowCount = GetMaxNumber(names.CompetenceNames.Count,
+                                        names.EmployeeNames.Count,
+                                        names.PositionNames.Count);
+            for (int i = 0; i < rowCount; i++)
+            {
+                string[] rowValues = new string[]
+                {
+                    names.CompetenceNames.Count > i ? names.CompetenceNames[i] : string.Empty,
+                    names.EmployeeNames.Count > i ? names.EmployeeNames[i] : string.Empty,
+                    names.PositionNames.Count > i ? names.PositionNames[i] : string.Empty
+                };
+                dataGridView1.Rows.Add(rowValues);
+            }
+        }
+        private int GetMaxNumber(params int[] numbers)
+        {
+            int result = 0;
+            foreach (var item in numbers)
+            {
+                result = item > result ? item : result;
+            }
+            return result;
         }
     }
     public class InputNames
