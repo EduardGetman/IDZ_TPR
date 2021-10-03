@@ -26,6 +26,7 @@ namespace View
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.CheckPathExists = true;
             saveFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+            saveFileDialog.ShowDialog(); 
             if (saveFileDialog.ShowDialog() == DialogResult.Cancel)
             {
                 return;
